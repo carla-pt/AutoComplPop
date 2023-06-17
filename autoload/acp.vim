@@ -190,8 +190,8 @@ function acp#onPopupPost()
   " to clear <C-r>= expression on command-line
   echo ''
   if pumvisible()
-    inoremap <silent> <expr> <C-h> acp#onBs()
-    inoremap <silent> <expr> <BS>  acp#onBs()
+    "inoremap <silent> <expr> <C-h> acp#onBs()
+    "inoremap <silent> <expr> <BS>  acp#onBs()
     " a command to restore to original text and select the first match
     return (s:behavsCurrent[s:iBehavs].command =~# "\<C-p>" ? "\<C-n>\<Up>"
           \                                                 : "\<C-p>\<Down>")
@@ -236,7 +236,8 @@ function s:mapForMappingDriven()
         \ 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
         \ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
         \ '-', '_', '~', '^', '.', ',', ':', '!', '#', '=', '%', '$', '@', '<', '>', '/', '\',
-        \ '<Space>', '<C-h>', '<BS>', ]
+        "\ '<Space>', '<C-h>', '<BS>', ]
+         \ '<Space>' ]
   for key in s:keysMappingDriven
     execute printf('inoremap <silent> %s %s<C-r>=<SID>feedPopup()<CR>',
           \        key, key)
@@ -373,8 +374,8 @@ endfunction
 
 "
 function s:finishPopup(fGroup1)
-  inoremap <C-h> <Nop> | iunmap <C-h>
-  inoremap <BS>  <Nop> | iunmap <BS>
+  "inoremap <C-h> <Nop> | iunmap <C-h>
+  "inoremap <BS>  <Nop> | iunmap <BS>
   let s:behavsCurrent = []
   call s:restoreTempOptions(s:GROUP0)
   if a:fGroup1
